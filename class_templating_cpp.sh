@@ -6,6 +6,7 @@
 
 #To skip to the following attribute type, leave the input empty and press ENTER.
 
+#!/bin/bash
 echo "Ingrese nombre de clase:"
 read TUCLASE
 echo "Ingrese nombre de clase base:"
@@ -42,7 +43,7 @@ bool $TUCLASE::grabarEnDisco(){
 
 bool $TUCLASE::modificarEnDisco(int pos){
     FILE *p;
-    p=fopen("TUARCHIVO.dat","rb+");
+    p=fopen("$TUARCHIVO.dat","rb+");
     if(p==NULL){return false;}
     fseek(p, pos * sizeof($TUCLASE), 0);
     bool escribio=fwrite(this, sizeof ($TUCLASE), 1, p);
@@ -85,15 +86,15 @@ else
 echo "Ingresar tamanio de la cadena:"
 read TAMANIO
 
-
+CADENAU=${CADENA^}
 printf "
     char $CADENA[$TAMANIO];" >> private
 
 printf "
-    void set$CADENA(char *c){strcpy($CADENA,c);}" >> setters
+    void set$CADENAU(char *c){strcpy($CADENA,c);}" >> setters
 
 printf "
-    const char *get$CADENA(){return $CADENA;}" >> getters
+    const char *get$CADENAU(){return $CADENA;}" >> getters
 fi
 done
 
@@ -106,14 +107,16 @@ then
     break
 else
 
+
+ENTEROU=${ENTERO^}
 printf "
     int $ENTERO;" >> private
 
 printf "
-    void set$ENTERO(int x){$ENTERO=x;}" >> setters
+    void set$ENTEROU(int x){$ENTERO=x;}" >> setters
 
 printf "
-    int get$ENTERO(){return $ENTERO;}" >> getters
+    int get$ENTEROU(){return $ENTERO;}" >> getters
 fi
 done
 
@@ -126,14 +129,14 @@ then
     break
 else
 
+FLOATU=${FLOAT^}
 printf "
     float $FLOAT;" >> private
 
 printf "
-    void set$FLOAT(float f){$FLOAT=f;}" >> setters
-
+    void set$FLOATU(float f){$FLOAT=f;}" >> setters
 printf "
-    float get$FLOAT(){return $FLOAT;}" >> getters
+    float get$FLOATU(){return $FLOAT;}" >> getters
 fi
 done
 
@@ -146,14 +149,15 @@ then
     break
 else
 
+BOOLU=${BOOL^}
 printf "
     bool $BOOL;" >> private
 
 printf "
-    void set$BOOL(bool b){$BOOL=b;}" >> setters
+    void set$BOOLU(bool b){$BOOL=b;}" >> setters
 
 printf "
-    bool get$BOOL(){return $BOOL;}" >> getters
+    bool get$BOOLU(){return $BOOL;}" >> getters
 fi
 done
 
