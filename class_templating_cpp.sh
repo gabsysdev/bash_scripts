@@ -1,12 +1,4 @@
 #!/bin/bash
-
-#Script that allows the quick creation of a class with primitive types
-#of data attributes for C++ (string, int, float and bool) + Basic File
-#functionality (Write, read, modify, and get total of registries in file.
-
-#To skip to the following attribute type, leave the input empty and press ENTER.
-
-#!/bin/bash
 echo "Ingrese nombre de clase:"
 read TUCLASE
 echo "Ingrese nombre de clase base:"
@@ -24,26 +16,26 @@ fi
 printf "
 bool $TUCLASE::leerDeDisco(int pos){
     FILE *p;
-    p=fopen("$TUARCHIVO","rb");
+    p=fopen(\"$TUARCHIVO\",\"rb\");
     if(p==NULL){return false;}
-    fseek(p, pos * sizeof ($TUCLASE), 0);
-    bool leyo = fread(this, sizeof ($TUCLASE), 1, p);
+    fseek(p, sizeof *this*pos, 0);
+    bool leyo = fread(this, sizeof *this, 1, p);
     fclose(p);
     return leyo;
 }
 
 bool $TUCLASE::grabarEnDisco(){
     FILE *p;
-    p=fopen("$TUARCHIVO","ab");
+    p=fopen(\"$TUARCHIVO\",\"ab\");
     if(p==NULL){return false;}
-    bool escribio = fwrite(this, sizeof ($TUCLASE), 1, p);
+    bool escribio = fwrite(this, sizeof *this, 1, p);
     fclose(p);
     return escribio;
 }
 
 bool $TUCLASE::modificarEnDisco(int pos){
     FILE *p;
-    p=fopen("$TUARCHIVO.dat","rb+");
+    p=fopen(\"$TUARCHIVO\",\"rb+\");
     if(p==NULL){return false;}
     fseek(p, pos * sizeof($TUCLASE), 0);
     bool escribio=fwrite(this, sizeof ($TUCLASE), 1, p);
@@ -53,7 +45,7 @@ bool $TUCLASE::modificarEnDisco(int pos){
 
 int $TUCLASE::getCantidadRegistros(){
     FILE *p;
-    p=fopen ("$TUARCHIVO","rb");
+    p=fopen (\"$TUARCHIVO\",\"rb\");
     fseek(p,0,SEEK_END);
     int tam=0;
     tam=ftell(p)/sizeof($TUCLASE);
@@ -177,7 +169,8 @@ cat setters >> class ;
 cat getters >> class ;
 cat class2 >> class ;
 
-printf "###################################################################"
+printf "###################################################################
+"
 
 cat class ;
 
