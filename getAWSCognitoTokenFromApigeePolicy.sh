@@ -6,9 +6,9 @@ RESPONSE=$(curl --location 'https://cognito-idp.us-east-1.amazonaws.com/' \
 --header 'Content-Type: application/x-amz-json-1.1' \
 --data '{
    "AuthParameters" : {
-      "USERNAME" : "paciente1",
-      "PASSWORD" : "paciente1"
+      "USERNAME" : "user",
+      "PASSWORD" : "password"
    },  
    "AuthFlow" : "USER_PASSWORD_AUTH",
-   "ClientId" : "42q4i0agn6sq1eucor7g6tgbv0"
+   "ClientId" : "client_id_pass"
 }') ; jq '.' <<< $RESPONSE > token.fullResponse; TOKEN=$(echo $RESPONSE | jq '.[] | .AccessToken' | head -1) ; curl -i https://34.160.224.233.nip.io/oauth/token -X POST -H "Authorization: Bearer $TOKEN" ; echo $TOKEN > token.accessToken
