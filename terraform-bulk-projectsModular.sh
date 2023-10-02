@@ -1,7 +1,7 @@
 #GCP
 #(Program) From a list of project files (called "projects.list"), creates
 #a terraform.tf file with name "importation_<project>.tf" for each project
-#Note: Not modular, tf file can be used to extract data and work on terraform. File maintenance would be difficult to achieve.
+#Note: Not modular, tf file can be used to extract data and work on terraform. File maintenance may be difficult to achieve.
 
 function CreateProjectsList(){
         rm projects.list
